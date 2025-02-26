@@ -4,7 +4,7 @@ const Appointment = require('../models/Appointment');
 //@desc    Get all hospitals
 //@route   GET /api/v1/hospitals
 //@access  Public
-exports.getHospitals = async (req, res, next) => {
+exports.getHospitals = async (req, res) => {
     let query;
     
     //copy req.query
@@ -76,7 +76,7 @@ exports.getHospitals = async (req, res, next) => {
 //@desc    Get single hospital
 //@route   GET /api/v1/hospitals/:id
 //@access  Public
-exports.getHospital = async (req, res, next) => {
+exports.getHospital = async (req, res) => {
     try{
         const hospital = await Hospital.findById(req.params.id);
 
@@ -94,7 +94,7 @@ exports.getHospital = async (req, res, next) => {
 //@desc    Create new hospital
 //@route   POST /api/v1/hospitals
 //@access  Private
-exports.createHospital = async(req, res, next) => {
+exports.createHospital = async(req, res) => {
     const hospital = await Hospital.create(req.body);
     res.status(201).json({ success:true, data:hospital});
 };
@@ -106,7 +106,7 @@ exports.createHospital = async(req, res, next) => {
 //@desc    Update hospital
 //@route   PUT /api/v1/hospitals/:id
 //@access  Private
-exports.updateHospital = async (req, res, next) => {
+exports.updateHospital = async (req, res) => {
     try{
         const hospital = await Hospital.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
@@ -127,7 +127,7 @@ exports.updateHospital = async (req, res, next) => {
 //@desc    Delete hospital
 //@route   DELETE /api/v1/hospitals/:id
 //@access  Private
-exports.deleteHospital = async (req, res, next) => {
+exports.deleteHospital = async (req, res) => {
     try {
         const hospital = await Hospital.findById(req.params.id);
 
